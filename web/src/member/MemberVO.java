@@ -6,20 +6,24 @@ public class MemberVO {
 	private String gender;
 	private String job;
 	private String reason;
+	private String mailyn;
 	private String hobby;
+	private String regdate;
 	
 	public MemberVO() {
 		super();
 	}
 
-	public MemberVO(String id, String pw, String gender, String job, String reason, String hobby) {
+	public MemberVO(String id, String pw, String gender, String job, String reason, String mailyn, String hobby, String regdate) {
 		super();
 		this.id = id;
 		this.pw = pw;
 		this.gender = gender;
 		this.job = job;
 		this.reason = reason;
+		this.mailyn = mailyn;
 		this.hobby = hobby;
+		this.regdate = regdate;
 	}
 
 	@Override
@@ -58,6 +62,13 @@ public class MemberVO {
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
+	public String getMailyn() {
+		return mailyn;
+	}
+	public void setMailyn(String mailyn) {
+		this.mailyn = mailyn;
+	}
+	
 	public String getHobby() {
 		return hobby;
 	}
@@ -65,6 +76,11 @@ public class MemberVO {
 		this.hobby = hobby;
 	}
 	
-	
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
 	
 }

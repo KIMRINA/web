@@ -15,7 +15,7 @@
 	for(DeptVO dept : list ) {
 %>
 	<tr>
-		<td><%=dept.getDepartment_id()%></td>
+		<td><a href="deptSelect?department_id=<%=dept.getDepartment_id()%>"><%=dept.getDepartment_id()%></a></td>
 		<td><%=dept.getDepartment_name()%></td>
 	</tr>
 <% } %>

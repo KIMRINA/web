@@ -21,6 +21,7 @@ public class DeptSelectAllServ extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 전체 조회
+		System.out.println("dept 전체 조회 실행");
 		DeptDAO dao = new DeptDAO();
 		ArrayList<DeptVO> list = dao.selectAll();
 		request.setAttribute("list", list);

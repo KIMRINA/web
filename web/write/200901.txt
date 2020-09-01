@@ -1,0 +1,34 @@
+jsp
+<% 자바코딩 %>
+<% 변수,상수,함수 %>
+
+web
+web - src
+    - webcontent - WEB-INF
+                 - lib(웹 어노테이션)
+                 - META-INF
+                 
+이것을 was로 옮기게 되면?
+src랑 webcontent가 없어짐
+web
+ ㄴindex.jsp
+ ㄴmember - member.jsp
+ ㄴWEB-INF
+    ㄴlib
+ 	ㄴweb
+ 	ㄴclass
+
+was는 서블릿 컨테이너
+
+
+기법 - method
+Create - post
+Read - get
+Update - put
+Delete - delete
+
+
+
+deptSelectAll.jsp------
+<td><a href="deptSelect?department_id=<%=dept.getDepartment_id()%>"><%=dept.getDepartment_id()%></a></td>
+파라미터 넘길때에는 주소뒤에(dept.Select) ? 를 붙여서 파라미터 입력하고 = 에 값넣기

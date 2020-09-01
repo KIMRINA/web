@@ -22,7 +22,7 @@ public class DeptDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID mgr_id, LOCATION_ID"
-						+ " FROM DEPARTMENTS"
+						+ " FROM hr.DEPARTMENTS"
 						+ " WHERE DEPARTMENT_ID=?";  // 컨+쉬+x 대문자, 컨+쉬+y 소문자 변환가능. 쿼리 엔터해서 쓸거면 앞에 공백 붙이기
 			pstmt = conn.prepareStatement(sql);  	// 미리 sql 구문이 준비가 되어야한다
 			pstmt.setInt(1, deptVO.getDepartment_id());	// ?의 첫번째 자리에 올 값 지정
@@ -55,7 +55,7 @@ public class DeptDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID mgr_id, LOCATION_ID"
-						+ " FROM DEPARTMENTS"
+						+ " FROM hr.DEPARTMENTS"
 						+ " ORDER BY DEPARTMENT_ID";  // 컨+쉬+x 대문자, 컨+쉬+y 소문자 변환가능. 쿼리 엔터해서 쓸거면 앞에 공백 붙이기
 			pstmt = conn.prepareStatement(sql);  	// 미리 sql 구문이 준비가 되어야한다
 			rs = pstmt.executeQuery();		// select 시에는 executeQuery() 쓰기
@@ -81,7 +81,7 @@ public class DeptDAO {
 	public void update(DeptVO deptVO) {
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "update departments set department_name =? where department_id=?";  // 값 들어갈 자리에 ? 로 지정
+			String sql = "update hr.departments set department_name =? where department_id=?";  // 값 들어갈 자리에 ? 로 지정
 			pstmt = conn.prepareStatement(sql);  // 미리 sql 구문이 준비가 되어야한다
 			pstmt.setString(1, deptVO.getDepartment_name());	// ?의 첫번째 자리에 올 값 지정
 			pstmt.setInt(2, deptVO.getDepartment_id());  // ?의 두번째 자리에 올 값 지정
@@ -99,7 +99,7 @@ public class DeptDAO {
 	public void delete(DeptVO deptVO) {
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "delete from departments where department_id=?";  // 값 들어갈 자리에 ? 로 지정
+			String sql = "delete from hr.departments where department_id=?";  // 값 들어갈 자리에 ? 로 지정
 			pstmt = conn.prepareStatement(sql);  // 미리 sql 구문이 준비가 되어야한다
 			pstmt.setInt(1, deptVO.getDepartment_id());	// ?의 첫번째 자리에 올 값 지정
 			int r = pstmt.executeUpdate();			// 실행
@@ -120,7 +120,7 @@ public class DeptDAO {
 			Connection conn = ConnectionManager.getConnnect();		// ConnectionManager클래스의 getConnnect실행
 
 			// 2. sql 구문 실행
-			String sql = "insert into departments (department_id, department_name)" 
+			String sql = "insert into hr.departments (department_id, department_name)" 
 						+ "values(" + deptVO.getDepartment_id() 
 						+ ",'"
 						+ deptVO.getDepartment_name()
