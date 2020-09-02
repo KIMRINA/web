@@ -16,10 +16,19 @@ public class MemberDAO {
 	Connection conn;
 	PreparedStatement pstmt; // PreparedStatement는 Statement와 같은 기능을 수행하지만 가독성이 좋고 더 빠르다. ?기호 사용가능
 	ResultSet rs = null; // ResultSet은 결과의 집합이라 select할때 사용하기. 초기값 필요하다
+	
+	// 싱글톤
+	static MemberDAO instance;
+	public static MemberDAO getInstance() {
+		if(instance == null)
+			instance = new MemberDAO();
+			return instance;
+	}
+	
 
 	// 단건 조회
 	public MemberVO selectOne(MemberVO memberVO) {
-		MemberVO resultVO = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
+		MemberVO member = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -30,11 +39,11 @@ public class MemberDAO {
 			rs = pstmt.executeQuery(); // select 시에는 executeQuery() 쓰기
 
 			if (rs.next()) { // 단건조회라서 next()로 한건 한건마다 true 인지 false인지 확인하고 이동함
-				resultVO = new MemberVO();
-				resultVO.setId(rs.getString(1)); // 컬럼이 첫번째 자리라서 1을 입력한거임
-				resultVO.setPw(rs.getString("pw"));
-				resultVO.setGender(rs.getString("gender")); // 컬럼명에다가 별칭있으면 별칭을 넣어줘야함
-				resultVO.setJob(rs.getString("job")); // 대소문자 구별 없음
+				member = new MemberVO();
+				member.setId(rs.getString(1)); // 컬럼이 첫번째 자리라서 1을 입력한거임
+				member.setPw(rs.getString("pw"));
+				member.setGender(rs.getString("gender")); // 컬럼명에다가 별칭있으면 별칭을 넣어줘야함
+				member.setJob(rs.getString("job")); // 대소문자 구별 없음
 			} else {
 				System.out.println("no data");
 			}
@@ -44,7 +53,7 @@ public class MemberDAO {
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-		return resultVO; // 값을 리턴해줌
+		return member; // 값을 리턴해줌
 	}
 
 	// 전체 조회
@@ -125,9 +134,9 @@ public class MemberDAO {
 	public void update(MemberVO memberVO) {
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "update member set job =? where id=?"; // 값 들어갈 자리에 ? 로 지정
+			String sql = "update member set pw =? where id=?"; // 값 들어갈 자리에 ? 로 지정
 			pstmt = conn.prepareStatement(sql); // 미리 sql 구문이 준비가 되어야한다
-			pstmt.setString(1, memberVO.getJob()); // ?의 첫번째 자리에 올 값 지정
+			pstmt.setString(1, memberVO.getPw()); // ?의 첫번째 자리에 올 값 지정
 			pstmt.setString(2, memberVO.getId()); // ?의 두번째 자리에 올 값 지정
 			int r = pstmt.executeUpdate(); // 실행
 			System.out.println(r + " 건이 수정됨"); // 결과 처리
@@ -139,6 +148,7 @@ public class MemberDAO {
 		}
 	}
 
+	
 	// delete
 	public void delete(MemberVO memberVO) {
 		try {

@@ -44,6 +44,7 @@ function inputCheck() {
 </script>
 </head>
 <body>
+<%@include file="/common/header.jsp" %>
 <form method="post" name="frm" id="frm" action="memberInsert.do" onsubmit="return inputCheck()">
 
 <h3 class="page_title">회원등록</h3>
@@ -60,10 +61,8 @@ function inputCheck() {
 	</div>
 	<div>
 		<label for="gender">성별</label>
-		<input type="radio" id="male" name="gender" value="male">
-		<label for="male1">남</label>
-  		<input type="radio" id="female" name="gender" value="female">
-  		<label for="female1">녀</label>
+		<input type="radio" id="male" name="gender" value="male">남
+  		<input type="radio" id="female" name="gender" value="female">여
   		<br>
 	</div>
 	<div>
@@ -78,7 +77,7 @@ function inputCheck() {
   	</div>
   	<div>
   		<label for="reason">가입 동기</label>
-  		<textarea id="reason" name="reason" rows="3" cols="30">가입 동기</textarea><br>
+  		<textarea id="reason" name="reason" rows="3" cols="30"></textarea><br>
   	</div>
   	<div>	
   		<label for="mailyn">메일수신여부</label>

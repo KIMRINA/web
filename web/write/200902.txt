@@ -1,0 +1,81 @@
+
+was = 서블릿 컨테이너
+
+기능/활용/기본객체/라이드사이클
+서버정보 / 환경변수 / application(=ServletContext) / 서비스
+접속정보 / 로그인 /session / 브라우저(=클라이언트)
+요청정보 / forword / request / 페이지
+
+「
+서블릿 버전 : 3.3
+서버정보 : Apache Tomcat/8.5.57
+컨텍스트(=어플리케이션) 경로 : /web1
+실제 경로 : D:\Dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\web1\member\memberInsert.jsp
+」
+이런식으로 있을때 실제 경로는 realPath임
+
+
+index.jsp에서
+「 <a href="dept/DeptInsertFormServ">부서등록폼</a> 」
+이런 형태인데 왜 dept앞에 /를 붙이지 않냐면
+html에서 /와 (ex: <a href="/">)
+servlet에서 /는 다르기 때문 (ex: forward("/"))
+예를들어 http:/localhost/web/ 이라는 주소가 있을경우 web의 왼쪽에 있는 슬래시는 html 슬래시고, 오른쪽에 있는 슬래시는 servlet 슬래시임
+
+<a href="/web/dept/DeptInsertFormServ">부서등록폼</a>,
+<a href="<%=application.getContextPath()%>/member/memberInsert.do">회원가입</a> 는 절대경로
+<a href="./dept/deptSelectAll">부서전체조회</a>, <a href="member/memberSelectAll.do"> 는 상대경로
+
+
+== 실행순서 ==
+http://localhost/web1/context3 ->
+http://localhost/web1/session ->
+http://localhost/web1/
+application은 모든 페이지가 공유하는 값이고, session은 브라우저별로 따로 돌아감(따로 관리)
+크롬과 엣지로 둘 다 실험해보면 빠르게 이해됨
+
+
+
+==index.jsp==
+<%	ShareObject obj1 = (ShareObject)application.getAttribute("data1"); 
+	if(obj1 == null) {
+	obj1.setCount(obj1.getCount()+1);
+%>
+<br>application : <%=obj1.getStr() %> : <%=obj1.getCount() %>
+
+
+<%	ShareObject obj2 = (ShareObject)session.getAttribute("data"); 
+	obj2.setCount(obj2.getCount()+1);
+%> <%-- jsp 코드 주석임 --%>
+<br>session : <%=obj2.getStr() %> : <%=obj2.getCount() %>
+<% } %>
+==index.jsp==
+
+
+------JSP-------
+<% 자바코드
+<%= 출력
+<%@ 지시어
+<%! 선언문
+<%-- 주석
+
+
+trimDirectiveWhitespaces -> 지시어에서 발생하는 공백을 다 빼라는 뜻
+isErrorPage -> 에러페이지
+
+
+
+
+-------EL---------
+${}
+   ㄴ 형변환
+   ㄴ null X
+ 
+<%= request.getAttribute(member)
+	if(member != null) {
+		out.print(member.getId)
+	} %> 의 형식의 코드를
+EL로 쓰면 ${member.id} 가 끝임
+
+jsp에서 <%session이라는 내장객체는 ${sessionScope} 로 표현됨
+<%request.getParameter 이라는 객체는 ${param} 로 표현됨

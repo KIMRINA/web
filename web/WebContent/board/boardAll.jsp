@@ -9,6 +9,7 @@
 <title>boardAll.jsp</title>
 </head>
 <body>
+<%@include file="/common/header.jsp" %>
 <h3 class="page_title">회원 전체조회</h3>
 <ul class="search">
 	<li>제목</li>

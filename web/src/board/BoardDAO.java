@@ -3,6 +3,7 @@ package board;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -116,24 +117,44 @@ public class BoardDAO {
 		try {
 			// 1. DB 연결
 			Connection conn = ConnectionManager.getConnnect(); // ConnectionManager클래스의 getConnnect실행
+			conn.setAutoCommit(false);
+			
 
+			// 보드 번호 조회
+			String seqSql = "select no from seq where tablename= 'board'";
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(seqSql);
+			rs.next();
+			int no = rs.getInt(1);
+			System.out.println(no);
+			
+			// 보드 번호 업데이트
+			seqSql = "update seq set no = no + 1 where tablename = 'board'";
+			stmt = conn.createStatement();
+			stmt.executeUpdate(seqSql);
+			
+			
 			// 2. sql 구문 실행
-			String sql = "insert into board(no,poster,subject,contents,lastpost,views,filename) values(?,?,?,?,?,?,?)";
+			String sql = "insert into board(lastpost,poster,subject,contents,no,filename) values(sysdate,?,?,?,?,?)";
 
 			PreparedStatement psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, boardVO.getNo());
-			psmt.setString(2, boardVO.getPoster());
-			psmt.setString(3, boardVO.getSubject());
-			psmt.setString(4, boardVO.getContents());
-			psmt.setString(5, boardVO.getLastpost());
-			psmt.setInt(6, boardVO.getViews());
-			psmt.setString(7, boardVO.getFilename());
+			psmt.setString(1, boardVO.getPoster());
+			psmt.setString(2, boardVO.getSubject());
+			psmt.setString(3, boardVO.getContents());
+			psmt.setInt(4, no);
+			psmt.setString(5, boardVO.getFilename());
 			psmt.executeUpdate();
+			conn.commit();
 
 			// 3. 결과 처리
 			System.out.println(r + " 건이 처리됨");
 
 		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 
 		} finally {
