@@ -2,6 +2,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,32 +21,32 @@
 <table border=1 id="members">
 <thead>
   <tr>
-    <th>아디</th>
-    <th>패스워드</th>
-    <th>직업</th>
-    <th>가입동기</th>
-    <th>성별</th>
-    <th>메일수신여부</th>
-    <th>취미</th>
-    <th>날짜</th>
+    <th>id</th>
+    <th>pw</th>
+    <th>job</th>
+    <th>reason</th>
+    <th>gender</th>
+    <th>mailyn</th>
+    <th>hobby</th>
+    <th>regdate</th>
   </tr>
 </thead>
   <tbody>
-  <%
-  	ArrayList<MemberVO> list = (ArrayList<MemberVO>)request.getAttribute("list");
-  	for(MemberVO member : list) {
-  %>
+  <c:forEach items="${list}" var="member">
+
   <tr>
-    <td><a href="memberSelect.jsp"><%=member.getId() %></a></td>
-    <td><%=member.getPw() %></td>
-    <td><%=member.getJob() %></td>
-    <td><%=member.getReason() %></td>
-    <td><%=member.getGender() %></td>
-    <td><%=member.getMailyn() %></td>
-    <td><%=member.getHobby() %></td>
-    <td><%=member.getRegdate() %></td>
+    <td><a href="memberSelect.jsp">${member.id}</a></td>
+    <td>${member.getPw()}</td>
+    <td>${member.getJob()}</td>
+    <td>${member.getReason()}</td>
+    <td>${member.getGender()}</td>
+    <td>${member.getMailyn()}
+    <button type="button">메일발송</button>
+    </td>
+    <td>${member.getHobby()}</td>
+    <td>${member.getRegdate()}</td>
   </tr>
-  <% } %>
+  </c:forEach>
   </tbody>
 </table>
 </body>
