@@ -18,7 +18,7 @@ public class MemberUpdateServ extends HttpServlet {
      
 	// 수정페이지로 이동
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("memberUpdate.jsp").forward(request, response);
+		request.getRequestDispatcher("memberUpdate2.jsp").forward(request, response);
 	}
 
 	// 수정 처리
