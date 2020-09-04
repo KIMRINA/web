@@ -120,14 +120,16 @@ public class DeptDAO {
 			Connection conn = ConnectionManager.getConnnect();		// ConnectionManager클래스의 getConnnect실행
 
 			// 2. sql 구문 실행
-			String sql = "insert into hr.departments (department_id, department_name)" 
-						+ "values(" + deptVO.getDepartment_id() 
-						+ ",'"
-						+ deptVO.getDepartment_name()
-						+"')";
+			String sql = "insert into hr.departments (department_id, department_name, location_id, manager_id)" 
+						+ "values(?,?,?,?)";
 			
-			Statement stmt = conn.createStatement();	// conn이라는 연결되는 길을 만듬(createStatement는 트럭과 같은 역할)
-			int r = stmt.executeUpdate(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);	// conn이라는 연결되는 길을 만듬(createStatement는 트럭과 같은 역할)
+			pstmt.setInt(1, deptVO.getDepartment_id());
+			pstmt.setString(2, deptVO.getDepartment_name());
+			pstmt.setInt(3, deptVO.getLocation_id());
+			pstmt.setInt(4, deptVO.getManager_id());
+			
+			int r = pstmt.executeUpdate();
 
 			// 3. 결과 처리
 			System.out.println(r + " 건이 처리됨");

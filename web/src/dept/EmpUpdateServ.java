@@ -7,26 +7,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class DeptInsertFormServ
- */
-@WebServlet("/dept/DeptInsertFormServ")
-public class DeptInsertFormServ extends HttpServlet {
+@WebServlet("/dept/empUpdateServ")
+public class EmpUpdateServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("deptInsertForm.jsp")
-			   .forward(request, response);
+		// 사번으로 단건 조회
+		
+		// joblist
+		
+		// 부서리스트
+		
+		// 사원리스트
+		
+		// request에 저장
+		// request.setAttribute("emp", o);
+		
+		// 수정페이지로 이동
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
