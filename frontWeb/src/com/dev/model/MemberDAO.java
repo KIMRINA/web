@@ -77,6 +77,7 @@ public class MemberDAO {
 				member.setHobby(rs.getString("hobby"));
 				member.setRegdate(rs.getString("regdate"));
 				list.add(member); // resultVo를 list에 담음
+				return list;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

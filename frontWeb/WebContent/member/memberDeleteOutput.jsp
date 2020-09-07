@@ -9,14 +9,14 @@
 <title>memberDeleteOutput.jsp</title>
 </head>
 <body>
-<c:forEach items="member" var="member">
-	id : ${member.id}<br>
-	pw : ${member.pw}<br>
-	gender : ${member.gender}<br>
-	job : ${member.job}<br>
-	mailyn : ${member.mailyn}<br>
-	reason : ${member.reason}<br>
-	hobby : ${member.hobby}<br>
+<c:forEach items="member" var="mem">
+	id : ${mem.id}<br>
+	pw : ${mem.pw}<br>
+	gender : ${mem.gender}<br>
+	job : ${mem.job}<br>
+	mailyn : ${mem.mailyn}<br>
+	reason : ${mem.reason}<br>
+	hobby : ${mem.hobby}<br>
 </c:forEach>
 </body>
 </html>
