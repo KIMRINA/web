@@ -22,7 +22,7 @@ public class MemberInsertController implements Controller{
 		String job = request.getParameter("job");
 		String mailyn = request.getParameter("mailyn");
 		String reason = request.getParameter("reason");
-		String[] hobby = request.getParameterValues("hobbys");
+		String[] hobby = request.getParameterValues("hobby");
 		
 		// 유효성 체크
 		

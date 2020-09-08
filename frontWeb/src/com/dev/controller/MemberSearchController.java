@@ -18,8 +18,10 @@ public class MemberSearchController implements Controller {
 		// job에 따라서 포워드 페이지 지정
 		String path="memberSearch.jsp";
 		String job = request.getParameter("job");
-		if(job.equals("delete")) {		// job이 delete라면 memberDelete.jsp로 넘어감 == job에 따라 리턴하는 포워드 페이지가 달라짐
+		if(job.equals("delete")) {			// job이 delete라면 memberDelete.jsp로 넘어감 == job에 따라 리턴하는 포워드 페이지가 달라짐
 			path="memberDelete.jsp";
+		} else if(job.equals("update")) {	// job이 update라면 memberUpdate.jsp로 넘어감
+			path = "memberUpdate.jsp";
 		}
 		
 		// 파라미터 변수에 저장

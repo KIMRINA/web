@@ -18,6 +18,7 @@ public class MemberDeleteController implements Controller {
 		// 파라미터 변수에 저장
 		String id = request.getParameter("id");
 		System.out.println(id);
+		
 		// id 파라미터 읽어서 id가 null인지 유효성 체크
 		if (id.isEmpty()) { // id가 값이 안들어갔을때
 			request.setAttribute("error", "id를 입력하세요");
@@ -32,9 +33,9 @@ public class MemberDeleteController implements Controller {
 		member.setId(id);
 
 		// 서비스
-		int r = MemberDAO.getInstance().delete(member);
+		int resultVO = MemberDAO.getInstance().delete(member);		// 결과값을 받기위해서 int 변수에 저장
 		request.setAttribute("member", MemberDAO.getInstance().selectOne(member));
-		request.setAttribute("cnt", r);
+		request.setAttribute("cnt", resultVO);
 
 		// 조회결과를 request에 저장 후에 memberSearchOutput.jsp로 포워드
 		request.getRequestDispatcher("/member/memberDeleteOutput.jsp").forward(request, response);

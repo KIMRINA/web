@@ -43,6 +43,10 @@ public class MemberDAO {
 				member.setPw(rs.getString("pw"));
 				member.setGender(rs.getString("gender")); // 컬럼명에다가 별칭있으면 별칭을 넣어줘야함
 				member.setJob(rs.getString("job")); // 대소문자 구별 없음
+				member.setHobby(rs.getString("hobby"));
+				member.setReason(rs.getString("reason"));
+				member.setMailyn(rs.getString("mailyn"));
+				
 			} else {
 				System.out.println("no data");
 			}

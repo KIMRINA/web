@@ -10,9 +10,11 @@
 </head>
 <body>   <%-- http://localhost/memberSearch.do --%>
 <h3>회원 검색</h3>
+<%-- http://localhost/frontWeb/memberList.do | 절대경로로 가기위해 / 앞에 ${pageContext.request.contextPath} 사용 --%>
+<a href="${pageContext.request.contextPath}/memberList.do">전체 검색</a>
 <form action="${pageContext.request.contextPath}/memberSearch.do">
 	<input type="hidden" name="job" value="search">
-	id : <input name="id">
+	<br>id : <input name="id">
 	<button>검색</button>
 </form>
 </body>
