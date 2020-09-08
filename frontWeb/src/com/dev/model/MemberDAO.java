@@ -150,13 +150,14 @@ public class MemberDAO {
 
 	
 	// delete
-	public void delete(MemberVO memberVO) {
+	public int delete(MemberVO memberVO) {
+		int r=0;
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "delete from member where id=?"; // 값 들어갈 자리에 ? 로 지정
 			pstmt = conn.prepareStatement(sql); // 미리 sql 구문이 준비가 되어야한다
 			pstmt.setString(1, memberVO.getId()); // ?의 첫번째 자리에 올 값 지정
-			int r = pstmt.executeUpdate(); // 실행
+			r = pstmt.executeUpdate(); // 실행
 			System.out.println(r + " 건이 삭제됨"); // 결과 처리
 
 		} catch (Exception e) {
@@ -164,6 +165,7 @@ public class MemberDAO {
 		} finally {
 			ConnectionManager.close(null, pstmt, conn); // 연결 해제
 		}
+		return r;
 	}
 
 	// insert

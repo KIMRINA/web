@@ -33,6 +33,7 @@ public class FrontController extends HttpServlet {
 	}
 	
 	// 서비스에서 확인후 uri를 잘라서 init에서 확인
+	// 요청이 들어올때마다 서비스를 실행
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding(charset);				// UTF-8을 읽어들여서 인코딩 한다는 뜻
 		String uri = request.getRequestURI();				// frontWeb/memberInsert.do

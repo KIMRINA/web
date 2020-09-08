@@ -9,14 +9,6 @@
 <title>memberDeleteOutput.jsp</title>
 </head>
 <body>
-<c:forEach items="member" var="mem">
-	id : ${mem.id}<br>
-	pw : ${mem.pw}<br>
-	gender : ${mem.gender}<br>
-	job : ${mem.job}<br>
-	mailyn : ${mem.mailyn}<br>
-	reason : ${mem.reason}<br>
-	hobby : ${mem.hobby}<br>
-</c:forEach>
+	처리건수 : ${cnt}<br>
 </body>
 </html>

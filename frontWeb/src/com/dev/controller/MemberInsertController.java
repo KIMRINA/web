@@ -25,6 +25,8 @@ public class MemberInsertController implements Controller{
 		String[] hobby = request.getParameterValues("hobbys");
 		
 		// 유효성 체크
+		
+		// VO에 담기
 		MemberVO member = new MemberVO();
 		member.setId(id);
 		member.setPw(pw);
@@ -39,6 +41,7 @@ public class MemberInsertController implements Controller{
 		
 		// 결과 저장
 		request.setAttribute("cnt", r);
+		request.setAttribute("member", member);
 		
 		// 뷰페이지로 이동
 		request.getRequestDispatcher("/member/memberInsertOutput.jsp").forward(request, response);

@@ -32,8 +32,9 @@ public class MemberDeleteController implements Controller {
 		member.setId(id);
 
 		// 서비스
-		MemberDAO.getInstance().delete(member);
-		request.setAttribute("member", MemberDAO.getInstance().selectAll());
+		int r = MemberDAO.getInstance().delete(member);
+		request.setAttribute("member", MemberDAO.getInstance().selectOne(member));
+		request.setAttribute("cnt", r);
 
 		// 조회결과를 request에 저장 후에 memberSearchOutput.jsp로 포워드
 		request.getRequestDispatcher("/member/memberDeleteOutput.jsp").forward(request, response);

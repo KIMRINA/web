@@ -9,7 +9,9 @@
 <title>memberSearch.jsp</title>
 </head>
 <body>   <%-- http://localhost/memberSearch.do --%>
+<h3>회원 검색</h3>
 <form action="${pageContext.request.contextPath}/memberSearch.do">
+	<input type="hidden" name="job" value="search">
 	id : <input name="id">
 	<button>검색</button>
 </form>
