@@ -6,7 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>memberSearch.jsp</title>
+<title>회원검색</title>
+<script>
+	function decoTest() {
+		console.log("test");
+	}
+</script>
 </head>
 <body>   <%-- http://localhost/memberSearch.do --%>
 <h3>회원 검색</h3>
