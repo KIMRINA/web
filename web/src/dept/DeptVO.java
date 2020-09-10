@@ -5,7 +5,25 @@ public class DeptVO {
 	private String department_name;
 	private Integer manager_id;
 	private Integer location_id;
-	
+	private Integer first;
+	private Integer last;
+
+	public Integer getFirst() {
+		return first;
+	}
+
+	public void setFirst(Integer first) {
+		this.first = first;
+	}
+
+	public Integer getLast() {
+		return last;
+	}
+
+	public void setLast(Integer last) {
+		this.last = last;
+	}
+
 	public DeptVO() {}
 	
 	public DeptVO(Integer department_id, String department_name) {
