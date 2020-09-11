@@ -2,6 +2,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +32,22 @@
   </tr>
 </thead>
   <tbody>
-    <%
+  <c:forEach items="${list}" var="board">
+  <tr>
+  	<td>${board.no}</td>
+  	<td>${board.poster}</td>
+  	<td><a href="#">${board.subject}</a></td>
+  	<td>${board.contents}</td>
+  	<td>${board.lastpost}</td>
+  	<td>${board.views}</td>
+  	<td><a href="download.do?filename=${board.filename}">${board.filename}</td>
+  	<td>
+    	<c:if test="${not empty board.filename}">
+    		<img src="../images/${board.filename}" style="width:50px">
+    	</c:if>
+    </td>
+  </c:forEach>
+<%--     <%
   	ArrayList<BoardVO> list = (ArrayList<BoardVO>)request.getAttribute("list");
   	for(BoardVO board : list) {
   	%>
@@ -48,7 +65,7 @@
     	</c:if>
     </td>
   </tr>
-  <% } %>
+  <% } %> --%>
   </tbody>
 </table>
 </body>
