@@ -26,6 +26,7 @@
     <th>lastpost</th>
     <th>views</th>
     <th>filename</th>
+    <th>이미지</th>
   </tr>
 </thead>
   <tbody>
@@ -41,6 +42,11 @@
     <td><%=board.getLastpost()%></td>
     <td><%=board.getViews()%></td>
     <td><%=board.getFilename()%></td>
+    <td>
+    	<c:if test="${not empty board.filename}">
+    		<img src="../images/${board.filename}" style="width:50px">
+    	</c:if>
+    </td>
   </tr>
   <% } %>
   </tbody>
