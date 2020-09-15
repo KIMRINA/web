@@ -129,11 +129,13 @@ public class BoardDAO {
 			
 
 			// 보드 번호 조회
-			String seqSql = "select no from seq where tablename= 'board'";
+			// String seqSql = "select no from seq where tablename= 'board'";
+			String seqSql = "select nbl(max(no,0)+1 from board ";
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(seqSql);
 			rs.next();
 			int no = rs.getInt(1);
+			boardVO.setNo(no);
 			System.out.println(no);
 			
 			// 보드 번호 업데이트
