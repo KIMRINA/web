@@ -15,6 +15,14 @@ public class BoardDAO {
 	Connection conn;
 	PreparedStatement pstmt; // PreparedStatement는 Statement와 같은 기능을 수행하지만 가독성이 좋고 더 빠르다. ?기호 사용가능
 	ResultSet rs = null; // ResultSet은 결과의 집합이라 select할때 사용하기. 초기값 필요하다
+	
+	// 싱글톤
+		static BoardDAO instance;
+		public static BoardDAO getInstance() {
+			if(instance == null)
+				instance = new BoardDAO();
+				return instance;
+		}
 
 	// 단건 조회
 	public BoardVO selectOne(BoardVO boardVO) {
