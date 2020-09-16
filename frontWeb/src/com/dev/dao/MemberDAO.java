@@ -1,4 +1,4 @@
-package com.dev.model;
+package com.dev.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.dev.common.ConnectionManager;
+import com.dev.model.MemberVO;
 
 public class MemberDAO {
 	// 전역변수. 모든 메서드에 공통으로 사용되는 변수

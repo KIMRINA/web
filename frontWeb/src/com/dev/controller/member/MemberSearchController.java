@@ -1,4 +1,4 @@
-package com.dev.controller;
+package com.dev.controller.member;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -7,7 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dev.model.MemberDAO;
+import com.dev.common.Controller;
+import com.dev.dao.MemberDAO;
 import com.dev.model.MemberVO;
 
 public class MemberSearchController implements Controller {
